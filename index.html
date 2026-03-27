@@ -450,7 +450,7 @@
       </div>
 
       <div style="position:relative; border-radius:18px; overflow:hidden; border:1px solid var(--line); margin-bottom:16px; background:#fff;">
-        <img src="./images/1.png" alt="1번 이미지" style="display:block; width:100%; height:auto;" />
+        <img src="./image/1.jpg" alt="1번 이미지" style="display:block; width:100%; height:auto;" />
         <div class="particle-layer">
           <span></span><span></span><span></span><span></span><span></span>
           <span></span><span></span><span></span><span></span><span></span>
@@ -893,7 +893,7 @@
       artEmoji.textContent = pageNumber;
       artCaption.textContent = scene.caption;
       // 이미지 자동 연결 (없으면 그라데이션)
-      const imgPath = `./images/${pageNumber}.png`;
+      const imgPath = `./image/${pageNumber}.jpg`;
       const testImg = new Image();
       testImg.src = imgPath;
       testImg.onload = () => {
