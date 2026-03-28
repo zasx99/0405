@@ -296,6 +296,9 @@
       min-width: 0;
       position: relative;
       overflow: hidden;
+      color: #5a3b1e;
+      font-weight: 700;
+      font-size: 14px;
     }
 
     .coin-btn.selected {
@@ -613,13 +616,13 @@
         ],
         quiz: {
           type: 'multiOX',
-          question: '방금 본 장면은 최후의 만찬 장면입니다. 최후의 만찬 관련 OX퀴즈를 풀어보세요.',
+          question: '방금 본 장면은 최후의 만찬 장면입니다. 요한복음 13장과 마태복음 26장을 참고하여 다음 문제를 풀어보세요.',
           items: [
-            { q: '예수님은 식사 전에 제자들의 발을 직접 씻겨 주셨다.(요 13:5)', a: true },
-            { q: '베드로는 처음부터 받아들였다.(요 13:8)', a: false },
-            { q: '유다가 배신자인 것을 알고 계셨다.(요 13:11)', a: true },
-            { q: '유다는 묻지 않았다.(마 26:25)', a: false },
-            { q: '유다는 밤에 떠났다.(요 13:30)', a: true }
+            { q: '예수님은 식사 전에 제자들의 발을 직접 씻겨 주셨다.', a: true },
+            { q: '베드로는 예수님이 자기 발을 씻기려 하자 처음부터 기꺼이 받아들였다.', a: false },
+            { q: '예수님은 유다가 배신자라는 것을 그 자리에서 이미 알고 계셨다.', a: true },
+            { q: '유다는 예수님께 "저는 아니지요?" 라고 묻지 않았다.', a: false },
+            { q: '예수님이 떡을 주신 후 유다가 바로 다락방을 떠났고, 그때가 밤이었다.', a: true }
           ]
         }
       },
@@ -653,7 +656,7 @@
           '날이 밝았다. 나는 로마 총독 관저 밖에서 안을 들여다봤다.',
           '빌라도는 “나는 이 사람에게서 아무 죄도 찾지 못하노라.”라고 말했다.',
           '하지만 군중은 “십자가에 못 박으소서!”라고 외쳤다.',
-          '그때 보면대 어딘가에 판결문이 붙어 있는 것이 보였다.'
+          '로마 총독 관저 외벽에 판결문이 붙어 있는 것이 보였다.'
         ],
         quiz: {
           type: 'text',
@@ -678,7 +681,7 @@
         ],
         quiz: {
           type: 'text',
-          question: '십자가 위에 달린 패는 어떤 언어로 쓰여졌을까요?(요 19:20)',
+          question: '십자가 위에 달린 패는 어떤 언어로 쓰여졌을까요?(요한복음 19장)',
           answer: ['히브리','로마','헬라']
         }
       },
@@ -695,8 +698,7 @@
         ],
         quiz: {
           type: 'letterSelect',
-          question: `요한복음 19:30 예수께서... 이르시되 O OOOO하시고 머리를 숙이니 영혼이 떠나가시리라
-빈 칸에 들어갈 말을 찾으세요.`,
+          question: '예수께서... 이르시되 O OOOO하시고 머리를 숙이니 영혼이 떠나가시리라 빈 칸에 들어갈 말을 찾으세요.(요한복음 19장)',
           letters: [
             '거','캥','루','락','채',
             '킹','탕','핑','다','치',
@@ -738,7 +740,7 @@
             {
               type: 'text',
               q: '예수님이 마리아에게 하신 첫 마디는 무엇인가요?',
-              answer: ['마리아야']
+              answer: ['여자여']
             }
           ]
         }
@@ -1267,8 +1269,8 @@
 
       const textAnswer = document.getElementById('textAnswer');
       if (textAnswer) textAnswer.disabled = true;
-      quizBody.querySelectorAll('button').forEach(btn => {
-        btn.disabled = true;
+      quizBody.querySelectorAll('button, input, textarea').forEach(el => {
+        el.disabled = true;
       });
     }
 
