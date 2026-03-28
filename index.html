@@ -117,13 +117,7 @@
     }
 
     .art-tag {
-      align-self: flex-start;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      background: rgba(255,255,255,0.18);
-      border: 1px solid rgba(255,255,255,0.25);
-      backdrop-filter: blur(8px);
+      display: none;
     }
 
     .art-emoji {
@@ -131,17 +125,15 @@
       text-align: center;
       margin: auto 0;
       filter: drop-shadow(0 8px 12px rgba(0,0,0,0.18));
+      display: block;
     }
 
     .art-caption {
-      font-size: 14px;
-      line-height: 1.5;
-      color: rgba(255,255,255,0.92);
-      text-shadow: 0 2px 8px rgba(0,0,0,0.22);
+      display: none;
     }
 
     .dialogue {
-      margin-top: -18px;
+      margin-top: 8px;
       position: relative;
       z-index: 3;
       background: rgba(30,15,8,0.95);
@@ -152,10 +144,7 @@
     }
 
     .speaker {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent-2);
-      margin-bottom: 8px;
+      display: none;
     }
 
     .bubble {
