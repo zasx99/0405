@@ -1005,8 +1005,8 @@
         if (!state.tap37DecayTimer && !state.tap37Done) {
           state.tap37DecayTimer = setInterval(() => {
             const now = Date.now();
-            if (now - state.tap37LastTouch > 140) {
-              state.tap37Progress = Math.max(0, state.tap37Progress - 4);
+            if (now - state.tap37LastTouch > 90) {
+              state.tap37Progress = Math.max(0, state.tap37Progress - 6);
               tapFill.style.width = `${Math.min(100, state.tap37Progress)}%`;
             }
           }, 60);
@@ -1464,7 +1464,7 @@
     tapHitBtn.addEventListener('click', () => {
       if (state.tap37Done) return;
       state.tap37LastTouch = Date.now();
-      state.tap37Progress = Math.min(100, state.tap37Progress + 7);
+      state.tap37Progress = Math.min(100, state.tap37Progress + 2);
       tapFill.style.width = `${state.tap37Progress}%`;
       if (state.tap37Progress >= 100) {
         state.tap37Done = true;
