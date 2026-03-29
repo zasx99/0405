@@ -519,7 +519,7 @@
           <div class="tap-challenge" id="tapChallenge">
             <div class="tap-label" id="tapLabel">터치해서 힘을 보태세요</div>
             <div class="tap-bar"><div class="tap-fill" id="tapFill"></div></div>
-            <button type="button" class="tap-hit" id="tapHitBtn">터치</button>
+            
           </div>
           <div class="art-content">
             <div class="art-tag" id="artTag">프롤로그</div>
@@ -887,8 +887,7 @@
     const quizPrevBtn = document.getElementById('quizPrevBtn');
     const tapChallenge = document.getElementById('tapChallenge');
     const tapFill = document.getElementById('tapFill');
-    const tapHitBtn = document.getElementById('tapHitBtn');
-    const tapLabel = document.getElementById('tapLabel');
+        const tapLabel = document.getElementById('tapLabel');
 
     function normalize(value) {
       return String(value).replace(/\s+/g, '').trim().toLowerCase();
@@ -999,14 +998,15 @@
       if (needsTapChallenge) {
         tapChallenge.style.display = 'flex';
         tapFill.style.width = `${Math.min(100, state.tap37Progress)}%`;
-        tapLabel.textContent = state.tap37Done ? '체험 완료' : '쉬지 말고 계속 터치하세요';
-        tapHitBtn.disabled = state.tap37Done;
-
+        tapLabel.innerHTML = state.tap37Done
+          ? '함께 끝까지 올라왔습니다'
+          : '예수님이 걸어가신 골고다 언덕을 함께 올라가보세요.<br>멈추지 말고 계속 터치하세요';
+        
         if (!state.tap37DecayTimer && !state.tap37Done) {
           state.tap37DecayTimer = setInterval(() => {
             const now = Date.now();
-            if (now - state.tap37LastTouch > 90) {
-              state.tap37Progress = Math.max(0, state.tap37Progress - 6);
+            if (now - state.tap37LastTouch > 140) {
+              state.tap37Progress = Math.max(0, state.tap37Progress - 4);
               tapFill.style.width = `${Math.min(100, state.tap37Progress)}%`;
             }
           }, 60);
@@ -1014,8 +1014,7 @@
       } else {
         tapChallenge.style.display = 'none';
         tapFill.style.width = '0%';
-        tapHitBtn.disabled = false;
-        if (state.tap37DecayTimer) {
+                if (state.tap37DecayTimer) {
           clearInterval(state.tap37DecayTimer);
           state.tap37DecayTimer = null;
         }
@@ -1461,15 +1460,18 @@
       moveNextScene();
     });
 
-    tapHitBtn.addEventListener('click', () => {
+    sceneArt.addEventListener('click', () => {
+      const pageNumber = getPageNumber();
+      if (pageNumber !== 37) return;
       if (state.tap37Done) return;
+
       state.tap37LastTouch = Date.now();
-      state.tap37Progress = Math.min(100, state.tap37Progress + 2);
+      state.tap37Progress = Math.min(100, state.tap37Progress + 3);
       tapFill.style.width = `${state.tap37Progress}%`;
+
       if (state.tap37Progress >= 100) {
         state.tap37Done = true;
-        tapLabel.textContent = '체험 완료';
-        tapHitBtn.disabled = true;
+        tapLabel.innerHTML = '함께 끝까지 올라왔습니다';
         nextBtn.disabled = false;
         if (state.tap37DecayTimer) {
           clearInterval(state.tap37DecayTimer);
