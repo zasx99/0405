@@ -311,7 +311,23 @@
       font-weight: 700;
     }
 
-    
+    .coin-btn.selected {
+      border-color: #475569;
+      background: radial-gradient(circle at 35% 35%, #f1f5f9 0%, #94a3b8 48%, #475569 100%);
+      color: transparent;
+    }
+
+    .coin-btn.selected::after {
+      content: '◉';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 16px;
+      font-weight: 700;
+    }
 
     .coin-count {
       margin-top: 12px;
@@ -497,10 +513,8 @@
       <h2>퀴즈</h2>
       <div class="question" id="quizQuestion"></div>
       <div id="quizBody"></div>
+      
       <div class="feedback hidden" id="quizFeedback"></div>
-      <div class="quiz-actions hidden" id="quizNextWrap">
-        <button class="primary" id="quizNextBtn">다음 ▶</button>
-      </div>
     </section>
 
     <section class="result-card hidden" id="finalSection">
@@ -566,14 +580,26 @@
         ],
         quiz: {
           type: 'multiOX',
-          question: 'OX 퀴즈 (모두 맞춰야 통과)',
+          question: `방금 본 장면은 최후의 만찬 장면입니다. 요한복음 13장과 마태복음 26장을 참고하여 다음 문제를 풀어보세요.
+__
+문제
+
+Q1. 예수님은 식사 전에 제자들의 발을 직접 씻겨 주셨다.
+→ O 
+
+Q2. 베드로는 예수님이 자기 발을 씻기려 하자 처음부터 기꺼이 받아들였다.
+→ X
+
+Q3. 예수님은 유다가 배신자라는 것을 그 자리에서 이미 알고 계셨다.
+→ O
+
+Q4. 유다는 예수님께 "저는 아니지요?" 라고 묻지 않았다.
+→ X
+
+Q5. 예수님이 떡을 주신 후 유다가 바로 다락방을 떠났고, 그때가 밤이었다.
+→ O `,
           items: [
             { q: '예수님은 말을 타고 예루살렘에 입성하셨다.', a: false },
-            { q: '군중은 종려나무 가지를 흔들며 환영했다.', a: true },
-            { q: '"호산나"는 "찬양합니다"라는 뜻이다.', a: false },
-            { q: '예수님은 입성 후 바로 성전으로 가셨다.', a: true }
-          ]
-        }
       },
       {
         tag: '2단계',
@@ -583,8 +609,7 @@
         lines: [
           '군중을 따라 성전 마당으로 들어갔다. 그런데 성전이... 시장이 되어 있었다.',
           '그때 예수님이 분노하시며 탁자를 뒤엎으시며 말씀하셨다.',
-          `"기록된 바, 내 집은 기도하는 집이라 하였거늘
-너희는 강도의 소굴을 만드는도다!"`,
+          '"기록된 바, 내 집은 기도하는 집이라 하였거늘\n너희는 강도의 소굴을 만드는도다!"',
           '소란이 가라앉고, 벽에 걸려 있는 어떤 종이를 발견했다.'
         ],
         quiz: {
@@ -600,22 +625,19 @@
         speaker: '주인공',
         lines: [
           '날이 저물고, 나는 어느 다락방 창문 밖에서 안을 들여다봤다.',
-          `예수님과 열두 제자가 모여 마지막 식사를 하고 있었다.
-"너희 중 하나가 나를 팔리라."`,
-          `충격적인 말씀에 제자들이 술렁였다.
-저마다 "주여, 나는 아니지요?" 하고 물었다.`,
-          `누가 배신자인지, 지금 이 자리에선 아무도 모르는 것 같았다.
-'과연 그 자리에서 무슨 일이 있었던 걸까?'`
+          `예수님과 열두 제자가 모여 마지막 식사를 하고 있었다.\n"너희 중 하나가 나를 팔리라."`,
+          `충격적인 말씀에 제자들이 술렁였다.\n저마다 "주여, 나는 아니지요?" 하고 물었다.`,
+          `누가 배신자인지, 지금 이 자리에선 아무도 모르는 것 같았다.\n'과연 그 자리에서 무슨 일이 있었던 걸까?'`
         ],
         quiz: {
           type: 'multiOX',
-          question: '방금 본 장면은 최후의 만찬 장면입니다. 요한복음 13장과 마태복음 26장을 참고하여 다음 문제를 풀어보세요.',
+          question: '방금 본 장면은 최후의 만찬 장면입니다. 최후의 만찬 관련 OX퀴즈를 풀어보세요.',
           items: [
             { q: '예수님은 식사 전에 제자들의 발을 직접 씻겨 주셨다.', a: true },
-            { q: '베드로는 예수님이 자기 발을 씻기려 하자 처음부터 기꺼이 받아들였다.', a: false },
-            { q: '예수님은 유다가 배신자라는 것을 그 자리에서 이미 알고 계셨다.', a: true },
-            { q: '유다는 예수님께 "저는 아니지요?" 라고 묻지 않았다.', a: false },
-            { q: '예수님이 떡을 주신 후 유다가 바로 다락방을 떠났고, 그때가 밤이었다.', a: true }
+            { q: '베드로는 처음부터 받아들였다.', a: false },
+            { q: '유다가 배신자인 것을 알고 계셨다.', a: true },
+            { q: '유다는 묻지 않았다.', a: false },
+            { q: '유다는 밤에 떠났다.', a: true }
           ]
         }
       },
@@ -626,12 +648,9 @@
         speaker: '주인공',
         lines: [
           '식사가 끝나고 예수님은 겟세마네 동산으로 가셨다.',
-          `예수님 홀로 땅에 엎드려 기도하셨다.
-"아버지여, 할 수 있거든 이 잔을 지나가게 하옵소서.
-그러나 나의 원대로 마시옵고, 아버지의 원대로 하옵소서."`,
+          `예수님 홀로 땅에 엎드려 기도하셨다.\n"아버지여, 할 수 있거든 이 잔을 지나가게 하옵소서.\n그러나 나의 원대로 마시옵고, 아버지의 원대로 하옵소서."`,
           '그때 횃불을 든 무리와 함께 한 사람이 나타났다. 그 사람이 예수님께 다가가 입을 맞추었다.',
-          `나는 직감했다.
-'저 사람이... 유다구나.'`
+          `나는 직감했다.\n'저 사람이... 유다구나.'`
         ],
         quiz: {
           type: 'coinSelect',
@@ -663,14 +682,10 @@
         caption: '십자가 위에 달린 패와 조롱 속에서 진실을 마주한다.',
         speaker: '주인공',
         lines: [
-          `군인들이 예수님을 끌고 가 가시관을 씌우고 붉은 옷을 입혔다.
-"유대인의 왕이여, 평안할지어다!" 조롱이 이어졌다.`,
+          `군인들이 예수님을 끌고 가 가시관을 씌우고 붉은 옷을 입혔다.\n"유대인의 왕이여, 평안할지어다!" 조롱이 이어졌다.`,
           '나는 차마 눈을 뜨고 볼 수가 없었다.',
-          `빌라도는 십자가 위에 패를 달게 했다.
-세 가지 언어로 이렇게 적었다.
-'나사렛 예수, 유대인의 왕'`,
-          `나는 그 패를 보며 생각했다.
-'왕이라고... 정말 왕이신 분인 걸까?'`
+          `빌라도는 십자가 위에 패를 달게 했다.\n세 가지 언어로 이렇게 적었다.\n'나사렛 예수, 유대인의 왕'`,
+          `나는 그 패를 보며 생각했다.\n'왕이라고... 정말 왕이신 분인 걸까?'`
         ],
         quiz: {
           type: 'text',
@@ -691,7 +706,7 @@
         ],
         quiz: {
           type: 'letterSelect',
-          question: '예수께서... 이르시되 O OOOO하시고 머리를 숙이니 영혼이 떠나가시리라 빈 칸에 들어갈 말을 찾으세요.(요한복음 19장)',
+          question: '요한복음 19:30 예수께서... 이르시되 O OOOO하시고 머리를 숙이니 영혼이 떠나가시리라\n빈 칸에 들어갈 말을 찾으세요.',
           letters: [
             '거','캥','루','락','채',
             '킹','탕','핑','다','치',
@@ -745,16 +760,14 @@
         speaker: '주인공',
         lines: [
           '나는 문이 굳게 닫혀 있는 제자들이 모인 방 밖에 서 있었다.',
-          `그런데 갑자기 방 안에서 빛이 번쩍이고 목소리가 들렸다.
-"너희에게 평강이 있을지어다."`,
+          '그런데 갑자기 방 안에서 빛이 번쩍이고 목소리가 들렸다.\n"너희에게 평강이 있을지어다."',
           '나와 제자들은 눈을 돌려 목소리가 들리는 쪽을 바라 보았다.',
           '그 순간, 내가 그 자리에 있었다면 어떤 기분이었을지 생각해 보았다.'
         ],
         quiz: {
-          type: 'text',
+          type: 'freeText2',
           question: '내가 제자들처럼 부활하신 예수님을 직접 마주했을 때 어떤 감정과 기분일지 적어주세요.',
-          placeholder: '',
-          minChars: 2
+          placeholder: '두 단어 이상으로 작성하세요'
         }
       },
       {
@@ -813,8 +826,6 @@
     const quizQuestion = document.getElementById('quizQuestion');
     const quizBody = document.getElementById('quizBody');
         const quizFeedback = document.getElementById('quizFeedback');
-    const quizNextWrap = document.getElementById('quizNextWrap');
-    const quizNextBtn = document.getElementById('quizNextBtn');
     const finalInput = document.getElementById('finalInput');
     const finalSubmit = document.getElementById('finalSubmit');
     const finalFeedback = document.getElementById('finalFeedback');
@@ -1190,27 +1201,42 @@
 
         container.appendChild(submit);
         quizBody.appendChild(container);
+      } else if (quiz.type === 'freeText2') {
+        const container = document.createElement('div');
+        const input = document.createElement('textarea');
+        input.className = 'input';
+        input.placeholder = quiz.placeholder || '두 단어 이상으로 작성하세요';
+        input.style.minHeight = '90px';
+
+        const submit = document.createElement('button');
+        submit.type = 'button';
+        submit.className = 'primary';
+        submit.textContent = '정답 제출';
+        submit.onclick = () => {
+          const v = (input.value || '').trim();
+          const words = v.split(/\s+/).filter(Boolean);
+          if (words.length < 2) {
+            showFeedback(false, '두 단어 이상 입력하세요.');
+            return;
+          }
+          checkAnswer('correct');
+        };
+
+        container.appendChild(input);
+        container.appendChild(submit);
+        quizBody.appendChild(container);
       } else if (quiz.type === 'text') {
         const input = document.createElement('input');
         input.className = 'input';
         input.id = 'textAnswer';
-        input.placeholder = quiz.placeholder || '';
+        input.placeholder = '정답을 입력하세요';
         const actions = document.createElement('div');
         actions.className = 'quiz-actions';
         const submit = document.createElement('button');
         submit.type = 'button';
         submit.className = 'primary';
         submit.textContent = '정답 제출';
-        submit.onclick = () => {
-          if (quiz.minChars) {
-            const chars = String(input.value || '').split(' ').join('');
-            if (chars.length < quiz.minChars) {
-              showFeedback(false, '두 글자 이상 입력하세요.');
-              return;
-            }
-          }
-          checkAnswer(input.value);
-        };
+        submit.onclick = () => checkAnswer(input.value);
         actions.appendChild(submit);
         quizBody.appendChild(input);
         quizBody.appendChild(actions);
@@ -1231,10 +1257,10 @@
     function checkAnswer(value) {
       const quiz = storyData[state.sceneIndex].quiz;
       let correct;
-      if (quiz.type === 'multiOX' || quiz.type === 'coinSelect' || quiz.type === 'letterSelect' || quiz.type === 'mixedQuiz') {
+      if (quiz.type === 'multiOX' || quiz.type === 'coinSelect' || quiz.type === 'letterSelect' || quiz.type === 'mixedQuiz' || quiz.type === 'freeText2') {
         correct = value === 'correct';
       } else if (quiz.type === 'text' && quiz.minChars) {
-        const chars = String(value || '').split(' ').join('');
+        const chars = String(value || '').replace(/\s+/g, '');
         correct = chars.length >= quiz.minChars;
       } else if (quiz.type === 'text' && Array.isArray(quiz.answer)) {
         const v = normalize(value);
@@ -1246,7 +1272,7 @@
       }
 
       if (!correct) {
-        showFeedback(false, '정답이 아닙니다.');
+        showFeedback(false, '정답이 아닙니다. 스토리를 떠올리고 다시 도전해 보세요.');
         return;
       }
 
@@ -1257,14 +1283,12 @@
         if (reward) state.collected.push(reward);
       }
       renderLetters();
-      showFeedback(true, '정답입니다!');
-      quizNextWrap.classList.remove('hidden');
+      showFeedback(true, `정답입니다! 단서를 획득했습니다: ${quiz.reward}`);
 
-      const textAnswer = document.getElementById('textAnswer');
-      if (textAnswer) textAnswer.disabled = true;
-      quizBody.querySelectorAll('button, input, textarea').forEach(el => {
-        el.disabled = true;
-      });
+      setTimeout(() => {
+        quizSection.classList.add('hidden');
+        moveNextScene();
+      }, 900);
     }
 
     function moveNextScene() {
@@ -1364,6 +1388,23 @@
     quizNextBtn.addEventListener('click', () => {
       quizSection.classList.add('hidden');
       moveNextScene();
+    });
+
+    tapHitBtn.addEventListener('click', () => {
+      if (state.tap37Done) return;
+      state.tap37LastTouch = Date.now();
+      state.tap37Progress = Math.min(100, state.tap37Progress + 7);
+      tapFill.style.width = `${state.tap37Progress}%`;
+      if (state.tap37Progress >= 100) {
+        state.tap37Done = true;
+        tapLabel.textContent = '체험 완료';
+        tapHitBtn.disabled = true;
+        nextBtn.disabled = false;
+        if (state.tap37DecayTimer) {
+          clearInterval(state.tap37DecayTimer);
+          state.tap37DecayTimer = null;
+        }
+      }
     });
 
     renderLetters();
